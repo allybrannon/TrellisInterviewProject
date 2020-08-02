@@ -1,36 +1,24 @@
 const express = require("express");
 
-// In-memory 'database' object
-// Feel free to store the information in a different format
-const db = {
-  sensors: [
-    {
-      id: 1,
-      name: "North Sensor",
-      description: "The sensor in the north"
-    },
-    {
-      id: 2,
-      name: "South Sensor",
-      description: "The south field sensor"
-    },
-    {
-      id: 3,
-      name: "East Sensor",
-      description: "The sensor on the east side"
-    },
-    {
-      id: 4,
-      name: "West Sensor",
-      description: "The western most sensor"
-    }
-  ]
-};
-
 // Create express app
 const app = express();
 
-app.use(function(req, res, next) {
+// create database for sensors
+const database = require("./database.js");
+
+// create routes for each sensor
+const northSensor = require("../routes/northSensor.js");
+const southSensor = require("../routes/southSensor.js");
+const eastSensor = require("../routes/eastSensor.js");
+const westSensor = require("../routes/westSensor.js");
+
+//use routes for each sensor
+app.use("/sensors/north", northSensor);
+app.use("/sensors/south", southSensor);
+app.use("/sensors/eastSensor", eastSensor);
+app.use("/sensors/westSensor", westSensor);
+
+app.use(function (req, res, next) {
   // Allow CORS
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -40,9 +28,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.json("Backend Home Page");
+});
+
 app.get("/sensors", (req, res) => {
   // Return all sensors
-  res.json(db.sensors);
+  res.json(database);
 });
 
 const PORT = 9000;
