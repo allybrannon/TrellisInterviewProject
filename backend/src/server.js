@@ -13,8 +13,8 @@ const eastSensor = require("../routes/eastSensor.js");
 const westSensor = require("../routes/westSensor.js");
 
 //use routes for each sensor
-app.use("/sensors/north", northSensor);
-app.use("/sensors/south", southSensor);
+app.use("/sensors/northSensor", northSensor);
+app.use("/sensors/southSensor", southSensor);
 app.use("/sensors/eastSensor", eastSensor);
 app.use("/sensors/westSensor", westSensor);
 
