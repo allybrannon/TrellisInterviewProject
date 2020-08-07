@@ -22,7 +22,10 @@ router.get("/note", async (req, res) => {
 //delete notes from db
 router.delete("/note/:id", async (req, res) => {
   res.send("Delete requested");
+  console.log("deleted");
 });
-// create notes
+
+// create notes in db
+router.post("/note", async (req, res) => {});
 
 module.exports = router;

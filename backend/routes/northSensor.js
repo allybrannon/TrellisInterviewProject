@@ -23,6 +23,15 @@ router.get("/note", async (req, res) => {
 router.delete("/note/:id", async (req, res) => {
   res.send("Delete requested");
 });
-// create notes
+
+// create notes in db
+router.post("/note", async (req, res) => {
+  // const notePost
+  try {
+    res.sendStatus(200);
+  } catch (error) {
+    res.send("Cannot post note").status(409);
+  }
+});
 
 module.exports = router;

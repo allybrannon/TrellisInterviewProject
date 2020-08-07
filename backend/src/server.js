@@ -1,6 +1,4 @@
 const express = require("express");
-
-// Create express app
 const app = express();
 
 // create database for sensors
@@ -12,7 +10,7 @@ const southSensor = require("../routes/southSensor.js");
 const eastSensor = require("../routes/eastSensor.js");
 const westSensor = require("../routes/westSensor.js");
 
-//use routes for each sensor
+// use routes for each sensor
 app.use("/sensors/northSensor", northSensor);
 app.use("/sensors/southSensor", southSensor);
 app.use("/sensors/eastSensor", eastSensor);
@@ -29,12 +27,12 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.json("Backend Home Page");
+  res.send("Backend Home Page");
 });
 
 app.get("/sensors", (req, res) => {
   // Return all sensors
-  res.json(database);
+  res.send(database);
 });
 
 const PORT = 9000;
